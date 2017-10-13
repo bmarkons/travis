@@ -4,5 +4,6 @@ services:
   - mysql
 script:
   - sudo apt-get install -y sysbench
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
   - sysbench --test=oltp --oltp-table-size=1000000 --mysql-db=test --mysql-user=travis --db-driver=mysql prepare
   - sysbench --test=oltp --oltp-table-size=1000000 --mysql-db=test --mysql-user=travis --db-driver=mysql --max-time=60 --oltp-read-only=on --max-requests=0 --num-threads=8 run
