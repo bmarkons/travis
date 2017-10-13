@@ -1,0 +1,4 @@
+sudo: true
+script:
+  - sudo apt-get install -y sysbench
+  - sysbench --test=cpu run
